@@ -147,9 +147,13 @@ const list = [
         display: flex;
         flex-direction: column;
         height: 100%;
-        overflow-y: scroll;
-        scrollbar-width: thin;
+        max-width: 18.4rem;
+        overflow-y: hidden;
         scrollbar-color: hsla(0, 0%, 100%, 0.15)  var(--color-secondary);
+        
+    }
+    .sidepanel__list:hover{
+        overflow-y: auto; 
         
     }
     .sidepanel__list--width{
