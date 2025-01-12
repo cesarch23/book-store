@@ -3,12 +3,13 @@ interface Props{
     image:string;
     isList:boolean;
     name:string;
+    isForHome?:boolean;
 
 }
-const {  image, isList, name } = Astro.props
+const {  image, isList, name , isForHome} = Astro.props
 ---
-<a href="#" class="card">
-    <img src=`${image}` alt=`imagen de una  ${name}` class=`card__image ${isList ? "square":"circle"} ` >
+<a href="#" class=`card ${isForHome ? "card--bg":""}`>
+    <img src=`${image}` alt=`imagen de una  ${name}` class=`card__image ${isList ? "":"circle"} ` >
     <div class="card__text">
         <p>{name}</p>
         <span >{isList ? "Lista":"Autor"}</span>
@@ -27,6 +28,9 @@ const {  image, isList, name } = Astro.props
     .card:hover{
         background-color: hsla(0, 0%, 100%, 0.15);
     }
+    .card--bg{
+        background-color: hsla(0, 0%, 100%, 0.06);
+    }
     .card:hover .card__image{
         opacity: .5;
     }
@@ -37,17 +41,18 @@ const {  image, isList, name } = Astro.props
         max-height: 100%;
         width: 4.8rem;
         aspect-ratio: 1/1;
-    }
-    .square{
 
     }
     .circle{
         border-radius: 50rem;
     }
     .card__text{
+         
         display: flex;
         flex-direction: column;
         gap: .4rem;
+        white-space: nowrap;
+
     }
     .card__text p{
         color: #fff;
