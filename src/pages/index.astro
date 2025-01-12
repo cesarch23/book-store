@@ -1,9 +1,71 @@
 ---
  
 import Layout from '../layouts/Layout.astro';
-
+import Chip from '../components/Chip.astro';
+const list = [
+    {
+        image:"https://i.scdn.co/image/ab67616d00001e02407bd04707c463bbb3410737",
+        isList:true,
+        name:'List de ejemplo'
+    },
+    {
+        image:"https://i.scdn.co/image/ab67616d00001e02407bd04707c463bbb3410737",
+        isList:true,
+        name:'List de ejemplo'
+    },
+    {
+        image:"https://i.scdn.co/image/ab67616d00001e02407bd04707c463bbb3410737",
+        isList:true,
+        name:'Tate McRae'
+    },
+    {
+        image:"https://thisis-images.spotifycdn.com/37i9dQZF1DZ06evO4mwRSU-default.jpg",
+        isList:true,
+        name:'Becky Hill'
+    }
+    ] 
+const categories = [ 'Todo','Ficcion','Tenologia','No ficcion','Infantil','Juvenil']
 ---
 
 <Layout>
-	 
+	 <!-- header -->
+      <div class="store">
+        <div class="store__header">
+            {categories.map(category=>
+                {
+                   return <Chip labelText={category} />
+                }     
+            )}
+        </div>
+        <div class="store__list">
+            <!-- listas creadas por la empresa -->
+            {list.map(element=>
+                {
+                   return <Chip image={element.image} isList={element.isList}  name={element.name} />
+                }     
+            )}
+        </div>
+        <div class="class__store__recomendations">
+            
+        </div>
+        <div class="store__best-sellers">
+
+        </div>
+        <div class="store__autors">
+            <!-- lista de autores -->
+        </div>
+
+      </div>
+      <style>
+        .store{
+            display: flex;
+            flex-direction: column;
+            gap: 3.2rem;
+        }
+        .store__header{
+            display: flex;
+            gap: .8rem;
+        }
+
+      </style>
 </Layout>
