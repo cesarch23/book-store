@@ -57,27 +57,29 @@ import HamburgerMenu from "../icons/HamburgerMenu.astro"
 		grid-template-areas: "header"
 							 "main";
 		grid-template-columns: auto;
+		padding: 0 1.6rem 1.6rem 1.6rem;
+		
 	}
 	.header{
 		grid-area: header;
 		height: 6.4rem;
 	}
 	.sidebar{
+		width: 100%;
 		display: none;
 		position: absolute;
 		z-index: 800;
 		background-color: var(--color-secondary, #121212);
 		border-radius: .8rem;
-		margin-left: .8rem;
-		height: calc(100vh - 6.4rem);
+		 
+		height: calc(100vh - 6.4rem - 1.6rem);
 		overflow-y: hidden;
 	}
 	.main{
 		grid-area: main;
 		border-radius: .8rem;
-		margin-right: .8rem;
 		background-color: var(--color-secondary, #121212);
-		height: calc( 100vh - 6.4rem );
+		height: calc( 100vh - 6.4rem - 1.6rem);
 		scrollbar-color: hsla(0, 0%, 100%, 0.15)  var(--color-secondary);
 		overflow: auto;
 		color: #fff;
@@ -90,7 +92,7 @@ import HamburgerMenu from "../icons/HamburgerMenu.astro"
 			grid-template-areas: "header header"
 								"sidebar main";
 			grid-template-columns: auto 3fr;
-			column-gap:.8rem;
+			column-gap: 1.6rem;
 			
 		}
 		.header{
