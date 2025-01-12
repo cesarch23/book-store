@@ -27,9 +27,15 @@ import Close from "../icons/Close.astro"
 </nav>
 <script >
   const cleaner = document.querySelector('#cleaner')
+  const search = document.querySelector('#search') as HTMLInputElement;
+  const closeIcon = document.querySelector('.nav__close-icon') as HTMLDivElement
   cleaner?.addEventListener('click',()=>{
-    const search = document.querySelector('#search') as HTMLInputElement;
     search.value = ""
+    closeIcon.style.display="none"
+    search.focus()
+  })
+  search.addEventListener('input',()=>{ 
+    closeIcon.style.display =  search.value==="" ? "none" : "flex"
   })
 </script>
 
@@ -80,6 +86,8 @@ import Close from "../icons/Close.astro"
     left: unset;
     right: 2.4rem;
     background-color: #2a2a2a;
+    display: none;
+    cursor: pointer;
   }
   .nav__input:focus {
     outline-color: #fff;
