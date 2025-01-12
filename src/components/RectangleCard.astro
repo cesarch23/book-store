@@ -1,0 +1,62 @@
+---
+interface Props{
+    image:string;
+    isList:boolean;
+    name:string;
+
+}
+const {  image, isList, name } = Astro.props
+---
+<a href="#" class="card">
+    <img src=`${image}` alt=`imagen de una  ${name}` class=`card__image ${isList ? "square":"circle"} ` >
+    <div class="card__text">
+        <p>{name}</p>
+        <span >{isList ? "Lista":"Autor"}</span>
+    </div>
+</a>
+<style>
+    .card{
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        width: 100%;
+        padding:.8rem;
+        text-decoration: none;
+        border-radius: .4rem;
+    }
+    .card:hover{
+        background-color: hsla(0, 0%, 100%, 0.15);
+    }
+    .card:hover .card__image{
+        opacity: .5;
+    }
+    .card__image{
+        display: block;
+        object-fit: cover;
+        /* max-width: 100%; */
+        max-height: 100%;
+        width: 4.8rem;
+        aspect-ratio: 1/1;
+    }
+    .square{
+
+    }
+    .circle{
+        border-radius: 50rem;
+    }
+    .card__text{
+        display: flex;
+        flex-direction: column;
+        gap: .4rem;
+    }
+    .card__text p{
+        color: #fff;
+        font-weight: 500;
+    }
+    .card__text span{
+        color: var(--color-base);
+        font-weight: 400;
+        font-size: 1.4rem;
+
+    }
+</style>
