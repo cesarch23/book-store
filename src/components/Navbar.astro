@@ -1,0 +1,127 @@
+---
+import Book from "../icons/Book.astro"
+import Shopping from "../icons/Shopping.astro"
+import Search from "../icons/Search.astro"
+import Close from "../icons/Close.astro"
+
+---
+
+<nav class="nav">
+  <a href="/" class="nav__logo">
+      <Book/>
+  </a>
+  <div class="nav__search">
+    <div class="nav__search-icon">
+      <Search> </Search>
+    </div>
+    <input class="nav__input" type="search" id="search" />
+    <div class="nav__close-icon" id="cleaner" >
+      <Close> </Close>
+    </div>
+  </div>
+
+  <div class="nav__account">
+    <a href="#" class="nav__shopping-car"> <Shopping></Shopping></a>
+    <a href="#" class="nav__profile"> <span class="nav__profile-letter">C</span> </a>
+  </div>
+</nav>
+<script >
+  const cleaner = document.querySelector('#cleaner')
+  cleaner?.addEventListener('click',()=>{
+    const search = document.querySelector('#search') as HTMLInputElement;
+    search.value = ""
+  })
+</script>
+
+<style>
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: .8rem;
+  }
+  .nav__logo {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+  }
+  .nav__search {
+    height: 100%;
+    width: 47.8rem;
+    position:relative;
+    z-index: 100;
+  }
+  .nav__search-icon, .nav__close-icon{
+    position:absolute;
+    top: 1.2rem;
+    left: 1.2rem;
+    z-index:200;
+    color: #fff;
+
+  }
+ 
+  .nav__input {
+    position: relative;
+    border-radius: 4rem;
+    padding:.8rem 2.4rem .8rem 4.4rem;
+    background-color: #2a2a2a;
+    z-index: 10;
+    outline-color: #fff;
+    border: none;
+    color: #fff;
+    transition-property: outline;
+    transition-duration: 600ms;
+    transition-timing-function: ease-out;
+    width: 100%;
+    height: 100%;
+  }
+  .nav__close-icon{
+    left: unset;
+    right: 2.4rem;
+    background-color: #2a2a2a;
+  }
+  .nav__input:focus {
+    outline-color: #fff;
+  }
+  .nav__account{
+    display: flex;
+    gap:.8rem;
+
+  }
+  .nav__shopping-car{
+    color: var(--color-base);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav__shopping-car:hover{
+    color: var(--color-white,#fff);
+  }
+  
+  .nav__profile{
+    width: 4.8rem;
+    height: 4.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.6rem;
+    border-radius: 100%;
+    padding: .8rem;
+    background-color: #1f1f1f;
+
+  }
+  .nav__profile-letter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: hsl(216, 85%, 58%);
+    width:3.2rem;
+    height:3.2rem;
+    border-radius:100%;
+    text-align: center;
+    font-weight: 700;
+  }
+ 
+</style>
