@@ -1,0 +1,174 @@
+---
+import Chip from "./Chip.astro"
+import RectangleCard from "./RectangleCard.astro"
+import Library from "../icons/Library.astro"
+import Plus from "../icons/Plus.astro"
+import Search from "../icons/Search.astro"
+import MenuDeep from "../icons/MenuDeep.astro"
+const list = [
+    {
+        image:"https://i.scdn.co/image/ab67616d00001e02407bd04707c463bbb3410737",
+        isList:true,
+        name:'List de ejemplo'
+    },
+    {
+        image:"https://i.scdn.co/image/ab67616d00001e02407bd04707c463bbb3410737",
+        isList:true,
+        name:'List de ejemplo'
+    },
+    {
+        image:"https://i.scdn.co/image/ab67616d00001e02407bd04707c463bbb3410737",
+        isList:true,
+        name:'Tate McRae'
+    },
+    {
+        image:"https://thisis-images.spotifycdn.com/37i9dQZF1DZ06evO4mwRSU-default.jpg",
+        isList:false,
+        name:'Becky Hill'
+    },
+    {
+        image:"https://thisis-images.spotifycdn.com/37i9dQZF1DZ06evO4mwRSU-default.jpg",
+        isList:false,
+        name:'Becky Hill'
+    },
+    {
+        image:"https://thisis-images.spotifycdn.com/37i9dQZF1DZ06evO4mwRSU-default.jpg",
+        isList:false,
+        name:'Becky Hill'
+    },
+    {
+        image:"https://thisis-images.spotifycdn.com/37i9dQZF1DZ06evO4mwRSU-default.jpg",
+        isList:false,
+        name:'Becky Hill'
+    },
+    {
+        image:"https://thisis-images.spotifycdn.com/37i9dQZF1DZ06evO4mwRSU-default.jpg",
+        isList:false,
+        name:'Becky Hill'
+    },
+    {
+        image:"https://thisis-images.spotifycdn.com/37i9dQZF1DZ06evO4mwRSU-default.jpg",
+        isList:false,
+        name:'Becky Hill'
+    },
+    {
+        image:"https://thisis-images.spotifycdn.com/37i9dQZF1DZ06evO4mwRSU-default.jpg",
+        isList:false,
+        name:'last last'
+    }
+    ] 
+
+    // 
+---
+<div class="sidepanel">
+    <div class="sidepanel__header">
+        <button class="sidepanel__text" id="menu">
+            <Library/>
+            <span>Tu biblioteca</span>
+        </button>
+        <div class="sidepanel__icons">
+            <Plus/>
+        </div>
+    </div>
+    <div class="sidepanel__chips">
+        <Chip labelText="Listas" />
+        <Chip labelText="Autores" />
+    </div>
+    <div class="sidepanel__actions">
+        <Search/>
+        <span></span>
+        <div class="sidepanel__filter">
+            <span class="sidepanel__actions-text">Recientes</span>
+            <MenuDeep></MenuDeep>
+        </div>
+    </div>
+    <div class="sidepanel__list">
+         {list.map( artist=> {
+            return (<RectangleCard image={artist.image} isList={artist.isList} name={artist.name} />)
+         }) }
+    </div>
+</div>
+<style>
+    
+    .sidepanel{
+        overflow-x: hidden;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 2.4rem;
+        padding: 1.2rem;
+        color: #fff;
+    }
+    .sidepanel__header{
+        display: flex;
+        justify-content: space-between;
+    }
+    .sidepanel__header--display{
+        justify-content: center;
+    }
+    .sidepanel__text{
+        background-color:rgba(19, 12, 12, 0);
+        border: none;
+        cursor: pointer ;
+        font-size: 1.6rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap:.8rem;
+        color: #fff;
+
+    }
+    .sidepanel__icons{
+        color: #fff;
+
+    }
+    .sidepanel__chips{
+        display: flex;
+        gap: .8rem;
+    }
+    .sidepanel__actions{
+        display: flex;
+        align-items: center;
+
+    }
+    .sidepanel__actions span{
+        flex: 1 1 1px;
+    }
+    .sidepanel__filter{
+        display: flex;
+        align-items: center;
+    }
+    .sidepanel__actions-text{
+        font-size: 1.4rem;
+        font-weight: 500;
+        vertical-align: center;
+    }
+    .sidepanel__list{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow-y: scroll;
+        scrollbar-width: thin;
+        scrollbar-color: hsla(0, 0%, 100%, 0.15)  var(--color-secondary);
+        
+    }
+    .sidepanel__list--width{
+        width: 64px;
+        overflow-x: hidden;
+    }
+    .hide{
+        display: none;
+    }
+    
+</style>
+<script>
+    const menu = document.querySelector('#menu')
+    menu?.addEventListener('click',()=>{
+        menu.querySelector('span')?.classList.toggle('hide')
+        document.querySelector('.sidepanel__header')?.classList.toggle('sidepanel__header--display')
+        document.querySelector('.sidepanel__icons')?.classList.toggle('hide')
+        document.querySelector('.sidepanel__chips')?.classList.toggle('hide')
+        document.querySelector('.sidepanel__actions')?.classList.toggle('hide')
+        document.querySelector('.sidepanel__list')?.classList.toggle('sidepanel__list--width')
+    })
+</script>
