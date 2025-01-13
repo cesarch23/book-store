@@ -1,0 +1,31 @@
+---
+import Star from "../icons/Star.astro"
+import StarFilled from "../icons/StarFilled.astro"
+import HalfStar from "../icons/HalfStar.astro"
+
+const { rating } = Astro.props
+const fullStars = Math.floor(rating);  
+const halfStar = rating % 1 >= 0.5;  
+const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);  
+---
+<div class="rating">
+    {Array(fullStars).fill(0).map(() => (
+         <StarFilled/> 
+      ))
+    }
+    {halfStar &&  <HalfStar/> }
+    {Array(emptyStars).fill(0).map(() => (
+         <Star/> 
+      ))}
+    <p class="rating__numbe"> ({rating}) </p>
+</div>
+<style>
+    .rating{
+        color:hsla(56, 98%, 46%, 0.719);   
+        display: flex;
+    }
+    .rating__numbe{
+        font-size: 1.3rem;
+        
+    }
+</style>
