@@ -61,20 +61,20 @@ const list = [
     // 
 ---
 <div class="sidepanel">
-    <div class="sidepanel__header">
+    <div class="sidepanel__header sidepanel__header--display">
         <button class="sidepanel__text" id="menu">
             <Library/>
-            <span>Tu biblioteca</span>
+            <span class="hide">Tu biblioteca</span>
         </button>
-        <div class="sidepanel__icons">
+        <div class="sidepanel__icons hide">
             <Plus/>
         </div>
     </div>
-    <div class="sidepanel__chips">
+    <div class="sidepanel__chips hide">
         <Chip labelText="Listas" />
         <Chip labelText="Autores" />
     </div>
-    <div class="sidepanel__actions">
+    <div class="sidepanel__actions hide">
         <Search/>
         <span></span>
         <div class="sidepanel__filter">
@@ -82,7 +82,7 @@ const list = [
             <MenuDeep></MenuDeep>
         </div>
     </div>
-    <div class="sidepanel__list">
+    <div class="sidepanel__list sidepanel__list--width">
          {list.map( artist=> {
             return (<RectangleCard image={artist.image} isList={artist.isList} name={artist.name} />)
          }) }
