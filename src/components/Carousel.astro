@@ -1,0 +1,39 @@
+---
+import BookCard from "./BookCard.astro";
+import {books} from "../data/books.js"
+
+
+---
+<div class="container">
+    <ul class="carousel">
+        {
+            books.map((book)=>{
+    
+                return ( <li> <BookCard id={book.id} title={book.title} price={book.price} author={book.author}  stars={book.stars} href={book.href} image={book.image} >
+                                </BookCard>
+                         </li>
+                )
+            })
+        }
+    
+    </ul>
+</div>
+<style>
+    .carousel{
+        list-style: none;
+        display: flex;
+        gap: 1.6rem;
+        overflow-x: auto;
+        padding: 2.4rem 0;
+    }
+    .carousel li{
+        display: block;
+    }
+    @media screen  && (width>=768px) {
+        .carousel{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 2.4rem;
+        }
+    }
+</style>
