@@ -1,7 +1,8 @@
 ---
- 
 import Layout from '../layouts/Layout.astro';
 import Chip from '../components/Chip.astro';
+import RectangleCard from '../components/RectangleCard.astro';
+import Carousel from '../components/Carousel.astro';
 const list = [
     {
         image:"https://i.scdn.co/image/ab67616d00001e02407bd04707c463bbb3410737",
@@ -22,7 +23,22 @@ const list = [
         image:"https://thisis-images.spotifycdn.com/37i9dQZF1DZ06evO4mwRSU-default.jpg",
         isList:true,
         name:'Becky Hill'
-    }
+    },
+    {
+        image:"https://thisis-images.spotifycdn.com/37i9dQZF1DZ06evO4mwRSU-default.jpg",
+        isList:true,
+        name:'Becky Hill'
+    },
+    {
+        image:"https://thisis-images.spotifycdn.com/37i9dQZF1DZ06evO4mwRSU-default.jpg",
+        isList:true,
+        name:'Becky Hill'
+    },
+    {
+        image:"https://thisis-images.spotifycdn.com/37i9dQZF1DZ06evO4mwRSU-default.jpg",
+        isList:true,
+        name:'Becky Hill'
+    } 
     ] 
 const categories = [ 'Todo','Ficcion','Tenologia','No ficcion','Infantil','Juvenil']
 ---
@@ -38,15 +54,15 @@ const categories = [ 'Todo','Ficcion','Tenologia','No ficcion','Infantil','Juven
             )}
         </div>
         <div class="store__list">
-            <!-- listas creadas por la empresa -->
             {list.map(element=>
                 {
-                   return <Chip image={element.image} isList={element.isList}  name={element.name} />
+                   return <RectangleCard image={element.image} isList={element.isList}  name={element.name} isForHome={true} />
                 }     
             )}
         </div>
-        <div class="class__store__recomendations">
-            
+        <div class="store__recomendations">
+            <h2 class="store__recomendation-title"> Libros recomendados</h2>
+            <Carousel/>
         </div>
         <div class="store__best-sellers">
 
@@ -57,15 +73,62 @@ const categories = [ 'Todo','Ficcion','Tenologia','No ficcion','Infantil','Juven
 
       </div>
       <style>
+        
         .store{
+            width: 100%;
             display: flex;
             flex-direction: column;
             gap: 3.2rem;
+            position: relative;
         }
         .store__header{
+            background-color: rgba(18, 18, 18, 0.188);
+            background-image: linear-gradient(hsla(200, 34%, 72%, 0.321) 0, hsla(200, 34%, 72%, 0) 100%);
+            background-image: linear-gradient(hsl(198.66deg 100% 26.81% / 40%) 0, hsla(200, 34%, 72%, 0) 100%);
+            padding: 2.4rem .8rem;
             display: flex;
             gap: .8rem;
+            width: 100%;
+            overflow-x: auto;
+            position: sticky;
+            z-index: 2000;
+            top: 0;
+            animation: bg linear both;
+            animation-timeline: scroll();
+            animation-range: 0 12rem; 
+              
         }
-
+        @keyframes bg {
+            to{
+                background-color: #121212;
+                background-image: linear-gradient(#121212 0, #121212 100%);
+                padding: 1.6rem .8rem;
+            }
+        }
+        .store__header *{
+            transition: 500ms;
+        }
+        .store__list{
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: .8rem;
+             
+        }
+        .store__recomendations{
+            
+        }
+        .store__recomendation-title{
+            font-size: 2.8rem;
+        }
+        @media (width>=768px){  
+            .store__list{
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                
+                
+            }
+        }
+       
+       
       </style>
 </Layout>
