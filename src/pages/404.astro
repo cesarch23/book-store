@@ -1,4 +1,40 @@
 ---
+import Layout from "../layouts/Layout.astro";
 ---
 
-<h1> EROR 404</h1>
+<Layout>
+  <div class="container">
+    <img
+      src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/404/404-computer.svg"
+      alt="404 Not Found"
+      class="image"
+    />
+    <h1>404 Not Found</h1>
+    <p>Whoops!  Esta pagina no existe</p>
+  </div>
+  <style>
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+    .image {
+      display: block;
+      width: 100%;
+      max-width: 30rem;
+    }
+    h1 {
+      font-size: 4.8rem;
+      color: #f04c4c; /* Primary 600 */
+      margin: .8rem 0;
+    }
+    p {
+      font-size: 2rem;
+    }
+     
+     
+     
+  </style>
+</Layout>
