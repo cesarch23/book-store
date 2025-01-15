@@ -11,9 +11,9 @@ if(!novel) {
 
 ---
  
-<Layout title=`Libro de {novel.title}`>
-    <div class="book" transition:animate="none" >
-        <img class="book_image" src={novel.image} alt=`Imagen del libro ${novel.title}` > 
+<Layout title=`Libro de {novel.title}` >
+    <div class="book" >
+        <img class="book_image" src={novel.image} alt=`Imagen del libro ${novel.title}`  > 
         <div class="book__info">
             <div class="book__header">
                 <h1 class="book__title" >{novel.title}</h1>
@@ -47,7 +47,7 @@ if(!novel) {
             </div>
         </div>
         <div class="book__summary">
-            <h3 class="book__summary-header"> Resumen del libro</h3>
+            <h3 class="book__summary-header" > Resumen del libro</h3>
             <p class="book__summary-text"> { novel.productDetails.summerize }</p>
                   <!-- tap: about the book,about the author,comments -->
         </div>

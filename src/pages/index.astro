@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Chip from '../components/Chip.astro';
 import RectangleCard from '../components/RectangleCard.astro';
 import Carousel from '../components/Carousel.astro';
+import {books, bestSellers} from "../data/books.js"
 const list = [
     {
         image:"https://i.scdn.co/image/ab67616d00001e02407bd04707c463bbb3410737",
@@ -43,7 +44,7 @@ const list = [
 const categories = [ 'Todo','Ficcion','Tenologia','No ficcion','Infantil','Juvenil']
 ---
 
-<Layout title="Book store" >
+<Layout title="Book store"  >
 	 <!-- header -->
       <div class="store" >
         <div class="store__header">
@@ -62,14 +63,28 @@ const categories = [ 'Todo','Ficcion','Tenologia','No ficcion','Infantil','Juven
         </div>
         <div class="store__recomendations" >
             <h2 class="store__recomendation-title"> Libros recomendados</h2>
-            <Carousel/>
+            <Carousel books={books} id="df78"/>
         </div>
         <div class="store__best-sellers">
-
+            <h2 class="store__recomendation-title"> Libros betsellers</h2>
+            <Carousel books={bestSellers}  id="jf79"/>
         </div>
         <div class="store__autors">
-            <!-- lista de autores -->
+            <h2 class="store__recomendation-title"> Lista de autores</h2>
+            <Carousel books={books}  id="al40"/>
         </div>
+        <!-- <div class="store__fiction">
+            <h2 class="store__recomendation-title"> Libros de Ficcion</h2>
+            <Carousel books={books}/>
+        </div>
+        <div class="store__adult">
+            <h2 class="store__recomendation-title"> Libros Juveniles</h2>
+            <Carousel books={books}/>
+        </div>
+        <div class="store__childs">
+            <h2 class="store__recomendation-title"> Libors  Infantiles</h2>
+            <Carousel books={books}/>
+        </div> -->
 
       </div>
       <style>

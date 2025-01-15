@@ -12,11 +12,11 @@ interface Props{
 }
 const {title, image,author,stars,id, price,href } = Astro.props
 ---
-<a href=`/books/${href}` class="book" id={id.toString()} >
+<a href=`/books/${href}` class="book" id={id.toString()}  >
     <img class="book__image"  src={image} alt=`Imagen del libro de ${title}`>
     <div class="book__text-content">
         <div class="book__headline">
-            <p class="book__title">
+            <p class="book__title"   >
                 {title}
             </p>
             <p class="book__subhead">

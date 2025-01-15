@@ -1,11 +1,15 @@
 ---
 import BookCard from "./BookCard.astro";
-import {books} from "../data/books.js"
 import ChevronLeft from "../icons/ChevronLeft.astro";
 import ChevronRight from "../icons/ChevronRight.astro";
- 
+export interface Props {
+  books: any[];
+  id: string; // El identificador único del carrusel
+}
+
+const { books, id } = Astro.props
 ---
-<div class="carousel-container">
+<div class="carousel-container" data-id={id}>
     <button class="left-button"> <ChevronLeft/> </button>
     <ul class="carousel">
         {
@@ -14,7 +18,7 @@ import ChevronRight from "../icons/ChevronRight.astro";
                 return ( <li> <BookCard id={book.id} title={book.title} price={book.price} author={book.author}  stars={book.stars} href={book.href} image={book.image} >
                                 </BookCard>
                          </li>
-                )
+                ) 
             })
         }
     
@@ -76,39 +80,41 @@ import ChevronRight from "../icons/ChevronRight.astro";
         transform:translateX(0%) ;
     }
 </style>
-<script is:inline  >
+<script is:inline >
 
     document.addEventListener('DOMContentLoaded', ()=>{
-        const carousel = document.querySelector('.carousel');
-        const prevBtn = document.querySelector('.left-button');
-        const nextBtn = document.querySelector('.right-button');
+        const carouselContainer = document.querySelector(`[data-id="${id}"]`);
+        const carousel = carouselContainer.querySelector('.carousel');
+        
+        const prevBtn = carouselContainer.querySelector('.left-button');
+        const nextBtn = carouselContainer.querySelector('.right-button');
 
         let scrollPosition = 0;
-        const itemWidth = document.querySelector('.book').offsetWidth + 32; // +16 for gap
+        const itemWidth = carousel.querySelector('.book').offsetWidth + 32; // +16 for gap
         console.log(itemWidth)
-        const visibleItems = Math.floor(document.querySelector('.carousel-container').offsetWidth / itemWidth);
+        const visibleItems = Math.floor(carouselContainer.offsetWidth / itemWidth);
         console.log(visibleItems)
-        const totalItems = document.querySelectorAll('.book').length;
+        const totalItems = carousel.querySelectorAll('.book').length;
 
         // Function to update the carousel position
         function updateCarousel() {
-        const maxScroll = (totalItems - visibleItems) * itemWidth;
-        scrollPosition = Math.min(scrollPosition, maxScroll); // Prevent scrolling beyond last item
-        carousel.style.transform = `translateX(${-scrollPosition}px)`;
+            const maxScroll = (totalItems - visibleItems) * itemWidth;
+            scrollPosition = Math.min(scrollPosition, maxScroll); // Prevent scrolling beyond last item
+            carousel.style.transform = `translateX(${-scrollPosition}px)`;
         }
 
         // Event listeners for buttons
         prevBtn.addEventListener('click', () => {
-        scrollPosition = Math.max(scrollPosition - itemWidth, 0);
-        updateCarousel();
+            scrollPosition = Math.max(scrollPosition - itemWidth, 0);
+            updateCarousel();
         });
 
         nextBtn.addEventListener('click', () => {
-        scrollPosition = Math.min(
-            scrollPosition + itemWidth,
-            (totalItems - visibleItems) * itemWidth
-        );
-        updateCarousel();
+            scrollPosition = Math.min(
+                scrollPosition + itemWidth,
+                (totalItems - visibleItems) * itemWidth
+            );
+            updateCarousel();
         });
         window.addEventListener('resize', updateCarousel);
 
