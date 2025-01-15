@@ -91,7 +91,7 @@ const list = [
 <style>
     
     .sidepanel{
-        overflow-x: hidden;
+        overflow-x: clip;
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -148,7 +148,7 @@ const list = [
         flex-direction: column;
         height: 100%;
         max-width: 18.4rem;
-        overflow-y: hidden;
+        overflow-y: clip;
         scrollbar-color: hsla(0, 0%, 100%, 0.15)  var(--color-secondary);
         
     }
@@ -158,7 +158,7 @@ const list = [
     }
     .sidepanel__list--width{
         width: 64px;
-        overflow-x: hidden;
+        overflow-x: clip;
     }
     .hide{
         display: none;
@@ -166,13 +166,15 @@ const list = [
     
 </style>
 <script >
-    const menu = document.querySelector('#menu')
-    menu?.addEventListener('click',()=>{
-        menu.querySelector('span')?.classList.toggle('hide')
-        document.querySelector('.sidepanel__header')?.classList.toggle('sidepanel__header--display')
-        document.querySelector('.sidepanel__icons')?.classList.toggle('hide')
-        document.querySelector('.sidepanel__chips')?.classList.toggle('hide')
-        document.querySelector('.sidepanel__actions')?.classList.toggle('hide')
-        document.querySelector('.sidepanel__list')?.classList.toggle('sidepanel__list--width')
+    document.addEventListener('DOMContentLoaded',()=>{
+        const menu = document.querySelector('#menu')
+        menu?.addEventListener('click',()=>{
+            menu.querySelector('span')?.classList.toggle('hide')
+            document.querySelector('.sidepanel__header')?.classList.toggle('sidepanel__header--display')
+            document.querySelector('.sidepanel__icons')?.classList.toggle('hide')
+            document.querySelector('.sidepanel__chips')?.classList.toggle('hide')
+            document.querySelector('.sidepanel__actions')?.classList.toggle('hide')
+            document.querySelector('.sidepanel__list')?.classList.toggle('sidepanel__list--width')
+        })
     })
 </script>

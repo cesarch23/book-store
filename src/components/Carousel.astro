@@ -40,13 +40,6 @@ const { books, id } = Astro.props
     .carousel li{
         display: block;
     }
-    @media screen  && (width>=768px) {
-        .carousel{
-            display: grid;
-            grid-template-columns: repeat(4,1fr);
-            gap: 2.4rem;
-        }
-    }
 
     .left-button, .right-button{
         position: absolute;
@@ -60,30 +53,42 @@ const { books, id } = Astro.props
         border-radius: 50%;
         color: #fff;
         transform:translateY(-50%) ;
-        transition: transform 250ms ease;
-        opacity: 1;
     }
     .left-button{
         left: 1rem;
-        transform:translateX(-150%) ;
+        
     }
     .right-button{
         right: 1rem;
-        transform:translateX(150%) ;
+      
     }
-    .carousel-container:hover .left-button{
-        opacity: 1;
-        transform:translateX(0%) ;
-    }
-    .carousel-container:hover .right-button{
-        opacity: 1;
-        transform:translateX(0%) ;
+     
+    @media screen  and (width>=768px) {
+        .carousel{
+            gap: 2.4rem;
+        }
+        .left-button, .right-button{
+            transition: transform 250ms ease;
+            opacity: 0;
+        }
+        .left-button{
+            transform:translateX(-150%) ;
+        }
+        .right-button{
+            transform:translateX(150%) ;
+        }
+        .carousel-container:hover .left-button, .carousel-container:hover .right-button{
+            opacity: 1;
+            transform:translateX(0%) ;
+        }
+        
     }
 </style>
 <script is:inline >
 
     document.addEventListener('DOMContentLoaded', ()=>{
-        const carouselContainer = document.querySelector(`[data-id="${id}"]`);
+        // const carouselContainer = document.querySelector(`[data-id="${id}"]`);
+        const carouselContainer = document.querySelector(`.carousel-container`);
         const carousel = carouselContainer.querySelector('.carousel');
         
         const prevBtn = carouselContainer.querySelector('.left-button');

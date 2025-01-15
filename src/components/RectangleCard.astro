@@ -51,12 +51,17 @@ const {  image, isList, name , isForHome} = Astro.props
         display: flex;
         flex-direction: column;
         gap: .4rem;
-        white-space: nowrap;
+        overflow-x: clip;
+         
 
     }
     .card__text p{
         color: #fff;
         font-weight: 500;
+        overflow: clip;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
     }
     .card__text span{
         color: var(--color-base);
