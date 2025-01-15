@@ -1,10 +1,12 @@
 ---
 import BookCard from "./BookCard.astro";
 import {books} from "../data/books.js"
-
-
+import ChevronLeft from "../icons/ChevronLeft.astro";
+import ChevronRight from "../icons/ChevronRight.astro";
+ 
 ---
-<div class="container">
+<div class="carousel-container">
+    <button class="left-button"> <ChevronLeft/> </button>
     <ul class="carousel">
         {
             books.map((book)=>{
@@ -17,13 +19,18 @@ import {books} from "../data/books.js"
         }
     
     </ul>
+    <button class="right-button"> <ChevronRight/> </button>
 </div>
 <style>
+    .carousel-container{
+        position: relative;
+        z-index: 200;
+        overflow: clip;
+    }
     .carousel{
         list-style: none;
         display: flex;
         gap: 1.6rem;
-        overflow-x: auto;
         padding: 2.4rem 0;
     }
     .carousel li{
@@ -36,4 +43,80 @@ import {books} from "../data/books.js"
             gap: 2.4rem;
         }
     }
+
+    .left-button, .right-button{
+        position: absolute;
+        top: 50%;
+        background-color: #2b2727;
+        width: 4.8rem;
+        height: 4.8rem;
+        z-index: 500;
+        cursor: pointer;
+        border: none;
+        border-radius: 50%;
+        color: #fff;
+        transform:translateY(-50%) ;
+        transition: transform 250ms ease;
+        opacity: 1;
+    }
+    .left-button{
+        left: 1rem;
+        transform:translateX(-150%) ;
+    }
+    .right-button{
+        right: 1rem;
+        transform:translateX(150%) ;
+    }
+    .carousel-container:hover .left-button{
+        opacity: 1;
+        transform:translateX(0%) ;
+    }
+    .carousel-container:hover .right-button{
+        opacity: 1;
+        transform:translateX(0%) ;
+    }
 </style>
+<script is:inline  >
+
+    document.addEventListener('DOMContentLoaded', ()=>{
+        const carousel = document.querySelector('.carousel');
+        const prevBtn = document.querySelector('.left-button');
+        const nextBtn = document.querySelector('.right-button');
+
+        let scrollPosition = 0;
+        const itemWidth = document.querySelector('.book').offsetWidth + 32; // +16 for gap
+        console.log(itemWidth)
+        const visibleItems = Math.floor(document.querySelector('.carousel-container').offsetWidth / itemWidth);
+        console.log(visibleItems)
+        const totalItems = document.querySelectorAll('.book').length;
+
+        // Function to update the carousel position
+        function updateCarousel() {
+        const maxScroll = (totalItems - visibleItems) * itemWidth;
+        scrollPosition = Math.min(scrollPosition, maxScroll); // Prevent scrolling beyond last item
+        carousel.style.transform = `translateX(${-scrollPosition}px)`;
+        }
+
+        // Event listeners for buttons
+        prevBtn.addEventListener('click', () => {
+        scrollPosition = Math.max(scrollPosition - itemWidth, 0);
+        updateCarousel();
+        });
+
+        nextBtn.addEventListener('click', () => {
+        scrollPosition = Math.min(
+            scrollPosition + itemWidth,
+            (totalItems - visibleItems) * itemWidth
+        );
+        updateCarousel();
+        });
+        window.addEventListener('resize', updateCarousel);
+
+        // Initialize carousel position
+        updateCarousel();
+
+    
+    })
+  
+    
+</script>
