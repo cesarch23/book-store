@@ -1,7 +1,7 @@
 ---
 import Navbar from "../components/Navbar.astro"
 import Sidepanel from "../components/Sidepanel.astro"
-import HamburgerMenu from "../icons/HamburgerMenu.astro"
+import { ClientRouter } from 'astro:transitions';
 ---
 <!doctype html>
 <html lang="en">
@@ -11,16 +11,17 @@ import HamburgerMenu from "../icons/HamburgerMenu.astro"
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro Basics</title>
+		<ClientRouter fallback="animate" />
 	</head>
 	<body>
-		<div class="container">
+		<div class="container" id="content">
 			<header class="header">
 				 <Navbar></Navbar>
 			</header>
 			<div class="sidebar">
 				<Sidepanel></Sidepanel>
 			</div>
-			<main class="main">
+			<main class="main" id="main">
 				<slot />
 			</main>
 		</div>
@@ -76,6 +77,7 @@ import HamburgerMenu from "../icons/HamburgerMenu.astro"
 		overflow-y: hidden;
 	}
 	.main{
+		/* view-transition-name: main; */
 		grid-area: main;
 		border-radius: .8rem;
 		background-color: var(--color-secondary, #121212);
@@ -107,4 +109,3 @@ import HamburgerMenu from "../icons/HamburgerMenu.astro"
 		 
 	}
 </style>	
- 
