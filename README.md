@@ -1,7 +1,7 @@
 
 ## 📚 Book Store App
 
-This is a simple Book Store application built with Astro. It allows users to browse, search, and purchase books online.
+This is a simple Book Store application built with Astro. It allows users to browse, and purchase books online.
 
 ## 🚀 Installation
 
